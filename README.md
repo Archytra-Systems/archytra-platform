@@ -1,2 +1,5 @@
-# archytra-platform
-Enterprise software platform implementing IAM, authorization, domain-driven design, and modular architectiure.
+# Archytra Platform
+
+Enterprise software platform designed to demonstrate scalable architecture,
+domain-driven design, identity and access management, and business-focused
+software engineering practices.
