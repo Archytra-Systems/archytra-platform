@@ -19,7 +19,6 @@ final class DataMapper {
 
             $value = $property->getValue($dto);
             
-            
             $attributes = $property->getAttributes(MapTo::class);
             if (!empty($attributes)) {
                 $column = $attributes[0]->newInstance()->column_name; 
