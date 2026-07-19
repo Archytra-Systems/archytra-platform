@@ -17,19 +17,23 @@ to evolve with changing business requirements.
 - RBAC
 - ABAC
 - Policies and Gates
-- Session Management
 
 ### User Management
 
-- User lifecycle
-- Profiles
-- Invitations
+- Users
 
 ### Enterprise Policies
 
-- Password policies
-- Account lock policies
-- Security rules
+- Password Policies
+- Account Lock Policies
+- Security Rules
+
+### Security Center
+- Login History
+- Audit Logs
+
+### Human Resource
+- Employee Records
 
 ## Architecture
 
