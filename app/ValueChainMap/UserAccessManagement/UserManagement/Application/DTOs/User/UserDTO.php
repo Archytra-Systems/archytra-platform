@@ -3,8 +3,9 @@
 namespace App\ValueChainMap\UserAccessManagement\UserManagement\Application\DTOs\User;
 
 use App\ValueChainMap\SharedKernel\Applications\Attribute\MapTo;
+use App\ValueChainMap\SharedKernel\Applications\DTOs\BaseDTO;
 
-final class UserDTO
+final class UserDTO extends BaseDTO
 {
     public function __construct(
         public readonly ?string $user_id,
@@ -14,6 +15,9 @@ final class UserDTO
         
         #[MapTo('display_name')]
         public readonly ?string $display_name,
+
+        #[MapTo('password')]
+        public readonly ?string $password,
         
         #[MapTo('avatar')]
         public readonly ?string $avatar
@@ -21,11 +25,14 @@ final class UserDTO
 
     public static function fromRequest(array $user_data): self
     {
-        return new self(
+        $dto = new self(
             user_id: $user_data['user_id'],
             email_address: $user_data['email_address'],
             display_name: $user_data['display_name'],
+            password: $user_data['password'],
             avatar: $user_data['avatar']
         );
+
+        return self::trackKeys($dto, $user_data);
     }
 }

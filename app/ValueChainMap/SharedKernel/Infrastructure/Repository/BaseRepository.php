@@ -13,20 +13,17 @@ class BaseRepository implements BaseRepositoryInterface
     { }
 
     public function create(array $data): ?Model {
-        $clean_data  = array_filter($data, fn($value) => !is_null($value));
-        return $this->model->create($clean_data);
+        return $this->model->create($data);
     }
 
     public function update(string $id, array $data): ?Model {
         $model = $this->model->whereKey($id)->first();
-        
-        $clean_data  = array_filter($data, fn($value) => !is_null($value));
 
         if (!$model) {
             return null;
         }
         
-        $model->update($clean_data);
+        $model->update($data);
         
         return $model;
     }

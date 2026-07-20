@@ -3,6 +3,7 @@
 namespace App\ValueChainMap\SharedKernel\Infrastructure\Mapper;
 
 use App\ValueChainMap\SharedKernel\Applications\Attribute\MapTo;
+use App\ValueChainMap\SharedKernel\Applications\DTOs\BaseDTO;
 use ReflectionClass;
 
 final class DataMapper {
@@ -10,8 +11,15 @@ final class DataMapper {
         $data = [];
         $reflection = new ReflectionClass($dto);
 
+        $tracked_keys = $dto instanceof BaseDTO;
+        $provided_keys = $tracked_keys ? BaseDTO::getProvidedKeys($dto) : [];
+
         foreach ( $reflection->getProperties() as $property ) {
             $name = $property->getName();
+
+            if ( $tracked_keys && !empty($provided_keys) && !in_array($name, $provided_keys) ) {
+                continue;
+            }
 
             if ( in_array($name, $exclude_column) ) {
                 continue;
